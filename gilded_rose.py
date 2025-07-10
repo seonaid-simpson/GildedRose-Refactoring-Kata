@@ -36,6 +36,13 @@ class GildedRose(object):
         if item.sell_in < 0;
             item.quality = 0
 
+    def update_conjured_item(self,item):
+        degredation = 2
+        if item.sell_in <= 0:
+            degredation *= 2
+        item.quality = max(0, item.quality - degredation)
+        item.sell_in -= 1
+
     def update_normal_item(self,item):
         if item.quality > 0:
             item.quality -= 1
